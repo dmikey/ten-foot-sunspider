@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="./assets/sunspider.css">
 </head>
 
-<body>
+<body class="results">
         <h2>JavaScript Benchmark Results</h2>
 
         <p><a href="./sunspider-driver.html">Run Again</a></p>
@@ -57,9 +57,10 @@
         }
 
         function print(str) {
-            var console = document.getElementById("console");
-            console.appendChild(document.createTextNode(str));
-            console.appendChild(document.createElement("br"));
+            var domconsole = document.getElementById("console");
+            domconsole.appendChild(document.createTextNode(str));
+            domconsole.appendChild(document.createElement("br"));
+            console.log(str);
         }
     </script>
 

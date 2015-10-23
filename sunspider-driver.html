@@ -74,32 +74,22 @@
 
         function finish() {
             
-            //save the output from the run 
-            //remotely
-            $.ajax({
-                url:"https://api.myjson.com/bins",
-                type:"POST",
-                data: JSON.stringify(output),
-                contentType:"application/json; charset=utf-8",
-                dataType:"json",
-                success: function(data, textStatus, jqXHR){
-                    console.log(data);
+            var outputString = "{";
+            for (var test in output[0]) {
+                outputString += '"' + test + '":[';
+                for (var i = 0; i < output.length; i++) {
+                    outputString += output[i][test] + ",";
                 }
-            });     
-//            
-//            var outputString = "{";
-//            for (var test in output[0]) {
-//                outputString += '"' + test + '":[';
-//                for (var i = 0; i < output.length; i++) {
-//                    outputString += output[i][test] + ",";
-//                }
-//                outputString = outputString.substring(0, outputString.length - 1);
-//                outputString += "],";
-//            }
-//            outputString = outputString.substring(0, outputString.length - 1);
-//            outputString += "}";
-//
-//            location = "sunspider-results.html?" + encodeURI(outputString);
+                outputString = outputString.substring(0, outputString.length - 1);
+                outputString += "],";
+            }
+            outputString = outputString.substring(0, outputString.length - 1);
+            outputString += "}";
+            
+            setTimeout(function(){
+                location = "sunspider-results.html?" + encodeURI(outputString);
+            }, 5000)
+           
         }
     </script>
 
